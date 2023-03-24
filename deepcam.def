@@ -1,0 +1,15 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:21.12-py3
+
+%post
+  apt-get update
+  apt install -y git wget vim
+  python -m pip install h5py==3.2.1
+  python -m pip install mpi4py==3.0.3
+  python -m pip install git+https://github.com/mlperf/logging.git@501bbde47f005d67c6357da6e5c1931eab339f8e
+  python -m pip install git+https://github.com/ildoonet/pytorch-gradual-warmup-lr.git@6b5e8953a80aef5b324104dc0c2e9b8c34d622bd
+  mkdir /data
+  mkdir /runscripts
+
+%labels
+  created by: "Pavan Siligam <pavan.siligam@gwdg.de>"

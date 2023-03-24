@@ -20,8 +20,17 @@ Getting from the original source as explained in the following pad
 
 https://pad.gwdg.de/Zr_gp75DQC2kLbNs-0hTYg?view
 
-or on glogin9 copy data from here:
+or on glogin9 copy source data from here:
 /scratch/usr/gzfbpks/deepcam/data
+
+create the following directories inside the cloned repository (i.e., deepcam)
+
+```
+mkdir input output tmpdir
+```
+
+`copy` or `move` the source data into `input` directory.
+
 
 3. run script
 

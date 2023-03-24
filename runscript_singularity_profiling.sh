@@ -19,7 +19,7 @@ local_batch_size=2
 
 run_tag="test_run_nranks-${totalranks}"
 
-mounts="./data:/data/data,./output:/data/output,$PWD:/runscripts,./tmpdir:/tmp"
+mounts="./input:/data,./output:/output,$PWD:/runscripts,./tmpdir:/tmp"
 
 # python \
 # nsys profile --force-overwrite true  -o /runscripts/timeline --trace cuda,nvtx,osrt,openacc python \
@@ -30,8 +30,8 @@ srun --mpi=pmi2  -n ${totalranks} \
     ./train.py \
     --wireup_method "nccl-slurm-pmi" \
     --run_tag ${run_tag} \
-    --data_dir_prefix ${mnt_data_dir} \
-    --output_dir ${mnt_output_dir} \
+    --data_dir_prefix /data \
+    --output_dir /output \
     --model_prefix "segmentation" \
     --optimizer "Adam" \
     --start_lr 0.0055 \

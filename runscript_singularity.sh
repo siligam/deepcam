@@ -17,12 +17,7 @@ module load singularity
 totalranks="$(( $SLURM_NNODES * $SLURM_NTASKS_PER_NODE ))"
 local_batch_size=2
 
-data_dir=./data
-output_dir=./output
 run_tag="test_run_nranks-${totalranks}"
-
-mnt_data_dir=/data/data
-mnt_output_dir=/data/output
 
 mounts="./data:/data/data,./output:/data/output,$PWD:/runscripts,./tmpdir:/tmp"
 
@@ -30,7 +25,7 @@ mounts="./data:/data/data,./output:/data/output,$PWD:/runscripts,./tmpdir:/tmp"
 # nsys profile --force-overwrite true  -o /runscripts/timeline --trace cuda,nvtx,osrt,openacc python \
 
 srun --mpi=pmi2  -n ${totalranks} \
-  singularity run --nv --env="TMPDIR=/tmp" -B $mounts --pwd=/runscripts dc.sif \
+  singularity run --nv --env="TMPDIR=/tmp" -B $mounts --pwd=/runscripts deepcam.sif \
     python \
     ./train.py \
     --wireup_method "nccl-slurm-pmi" \

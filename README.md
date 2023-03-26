@@ -35,6 +35,7 @@ mkdir input output tmpdir
 3. run script
 
 submit the provided run script to slurm run the benchmark. 
+For example: ```sbatch runscript_singularity.sh```
 
 ### Hyperparameters
 The table below contains the modifiable hyperparameters. Unless otherwise stated, parameters not listed in the table below are fixed and changing those could lead to an invalid submission.
